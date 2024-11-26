@@ -55,3 +55,10 @@ class Account(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
         verbose_name_plural = 'Accounts'
         verbose_name = 'Account'
         ordering = ['-created_at']
+
+
+class Task(TimeStampedModel):
+    user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='tasks')
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    status = models.CharField(max_length=20)

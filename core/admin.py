@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Account
+from .models import Account, Task
 from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
@@ -19,3 +19,8 @@ class AccountAdmin(UserAdmin):
         }),
     )
     readonly_fields = ('created_at', 'updated_at')
+
+
+@admin.register(Task)
+class TaskAdmin(admin.ModelAdmin):
+    list_display = ('title', 'user', 'description', 'status', 'created_at')
