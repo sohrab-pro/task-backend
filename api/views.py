@@ -31,8 +31,22 @@ class Signup(APIView):
 
     def post(self, request):
         serializer = AccountSerializer(data=request.data)
+        username = request.data.get('username')
+        password = request.data.get('password')
+        email = request.data.get('email')
+        if Account.objects.filter(username=username).exists():
+            return Response({'error': 'Username already exists!'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if Account.objects.filter(email=email).exists():
+            return Response({'error': 'Email already exists!'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if len(password) < 8:
+            return Response({'error': 'Password should be at least 8 characters long!'}, status=status.HTTP_400_BAD_REQUEST)
+
         if serializer.is_valid():
             user = serializer.save()
+            user.set_password(password)
+            user.save()
             token, created = Token.objects.get_or_create(user=user)
             return Response({'message': 'User created successfully!', 'token': token.key}, status=status.HTTP_201_CREATED)
         else:

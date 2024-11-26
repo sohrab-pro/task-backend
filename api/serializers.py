@@ -7,13 +7,11 @@ class AccountSerializer(serializers.ModelSerializer):
         model = Account
         fields = [
             'id',
-            'full_name',
             'username',
             'email',
             'is_active',
             'is_staff',
             'is_superuser',
-            'is_suspended',
             'created_at',
             'updated_at',
         ]
