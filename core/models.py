@@ -60,5 +60,5 @@ class Account(AbstractBaseUser, PermissionsMixin, TimeStampedModel):
 class Task(TimeStampedModel):
     user = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='tasks')
     title = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True, default='')
     status = models.CharField(max_length=20)
