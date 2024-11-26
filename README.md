@@ -21,8 +21,8 @@ A robust RESTful API built with Django REST Framework that enables users to mana
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/task-management-api.git
-cd task-management-api
+git clone https://github.com/sohrab-pro/task-backend.git
+cd task-backend
 ```
 
 2. Create and activate a virtual environment:
