@@ -65,3 +65,7 @@ class TaskViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+    def perform_destroy(self, instance):
+        instance.delete()
+        return Response({'status': 'success', 'message': 'Task deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
